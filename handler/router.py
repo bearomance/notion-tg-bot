@@ -12,5 +12,5 @@ class MessageRouter:
         notion_service.record(message,  datetime.now().isoformat())
 
         chat_id = update["message"]["chat"]["id"]
-        await telegram_service.send_message(message, chat_id)
+        telegram_service.send_message(message, chat_id)
         return self
