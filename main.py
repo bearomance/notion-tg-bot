@@ -18,6 +18,4 @@ async def webhook(request: Request):
         asyncio.create_task(router.handle(update))
     except Exception as e:
         print(f"解析JSON时出错: {e}")
-    data = await request.json()
-    print(data)
     return {"status": "ok"}
