@@ -2,6 +2,7 @@ import httpx
 from util.config import TELEGRAM_TOKEN, TELEGRAM_CHAT_ID
 
 async def send_message(text, chat_id=TELEGRAM_CHAT_ID):
+    print(f"Sending message: {text}, to chat_id: {chat_id}")
     async with httpx.AsyncClient() as client:
         response = await client.post(
             f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage",

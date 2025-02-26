@@ -13,9 +13,8 @@ async def ping():
 @app.post("/webhook")
 async def webhook(request: Request):
     try:
-        update = await request.json()
-        print(f"Telegram webhook received update: {update}")
+        update = request.json()
         asyncio.create_task(router.handle(update))
     except Exception as e:
-        print(f"解析JSON时出错: {e}")
+        print(f"Handle webhook ERROR: {e}")
     return {"status": "ok"}

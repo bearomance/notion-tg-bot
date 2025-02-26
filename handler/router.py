@@ -6,7 +6,7 @@ class MessageRouter:
         self.update = {}
 
     async def handle(self, update):
-        print('Handling update')
+        print(f"Handling update: {update}")
         self.update = update
         message = update["message"]['text']
         notion_service.record(message,  datetime.now().isoformat())
