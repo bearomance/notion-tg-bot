@@ -8,10 +8,10 @@ class MessageRouter:
     async def handle(self, update):
         print('Handling update')
         self.update = update
-        message = update["message"]
+        message = update["message"]['text']
         chat_id = message["chat"]["id"]
 
         notion_service.record(message,  datetime.now().isoformat())
 
-        await telegram_service.send_message(message['text'], chat_id)
+        await telegram_service.send_message(message, chat_id)
         return self
