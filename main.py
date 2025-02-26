@@ -13,7 +13,7 @@ async def ping():
 @app.post("/webhook")
 async def webhook(request: Request):
     try:
-        update = request.json()
+        update = await request.json()
         asyncio.create_task(router.handle(update))
     except Exception as e:
         print(f"Handle webhook ERROR: {e}")
