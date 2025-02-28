@@ -20,7 +20,7 @@ async def webhook(request: Request):
         print(f"Handle webhook ERROR: {e}")
     return {"status": "ok"}
 
-@app.post("/api/cron")
+@app.post("/cron")
 async def cron_job():
     try:
         # 在这里添加您想要每小时执行的任务
