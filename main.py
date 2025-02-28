@@ -2,6 +2,7 @@ from fastapi import FastAPI, Request
 import asyncio
 from handler.router import MessageRouter
 from service import telegram_service
+from datetime import datetime, timezone, timedelta
 
 app = FastAPI()
 router = MessageRouter()
@@ -21,12 +22,10 @@ async def webhook(request: Request):
     return {"status": "ok"}
 
 @app.post("/cron")
-async def cron_job():
+async def cron():
     try:
-        # 在这里添加您想要每小时执行的任务
-        print("Running hourly cron job")
-        # 例如：await router.some_hourly_task()
-        telegram_service.send_message("Hello, World!")
+        current_time = datetime.now(timezone.utc).astimezone(timezone(timedelta(hours=8)))
+        telegram_service.send_message(f"Current time is: {current_time.strftime('%Y-%m-%d %H:%M:%S')}")
         return {"status": "success", "message": "Cron job executed successfully"}
     except Exception as e:
         print(f"Cron job ERROR: {e}")

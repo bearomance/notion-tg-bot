@@ -1,0 +1,14 @@
+name: Schedule
+
+on:
+  schedule:
+    - cron: "0 0-14 * * *"
+
+jobs:
+  schedule:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call API
+        run: |
+          echo "Calling API"
+          curl -X POST ${{ secrets.API_URL }}/cron
